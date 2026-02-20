@@ -314,7 +314,6 @@
   }
 
   .stat-num {
-    font-family: 'Playfair Display', serif;
     font-size: 42px;
     font-weight: 700;
     color: white;
@@ -513,7 +512,6 @@
   }
 
   .service-num {
-    font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--grey);
     letter-spacing: 2px;
@@ -639,7 +637,6 @@
   }
 
   .metric-num {
-    font-family: 'Playfair Display', serif;
     font-size: 52px;
     font-weight: 700;
     color: white;
@@ -878,7 +875,6 @@
   }
 
   .team-exp {
-    font-family: 'DM Mono', monospace;
     font-size: 11px;
     color: var(--grey);
     margin-top: 16px;
