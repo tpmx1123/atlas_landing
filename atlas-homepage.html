@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Financial Research & Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B3E;
+    --navy-mid: #152650;
+    --navy-light: #1E3563;
+    --red: #E8192C;
+    --red-soft: #FF2D40;
+    --gold: #C9A96E;
+    --cream: #F7F3EE;
+    --white: #FFFFFF;
+    --grey: #8A92A3;
+    --light-grey: #F0F2F7;
+    --text-dark: #0A1628;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    height: 80px;
+    background: rgba(13, 27, 62, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+  }
+
+  .logo-globe {
+    width: 42px; height: 42px;
+    background: var(--red);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 20px;
+  }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: white;
+    letter-spacing: 3px;
+  }
+
+  .logo-text span { color: var(--red); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--red);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: #c0112a !important; color: white !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(30,53,99,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(232,25,44,0.08) 0%, transparent 60%);
+  }
+
+  /* Geometric triangles */
+  .hero-triangles {
+    position: absolute; right: 0; top: 0;
+    width: 50%; height: 100%;
+    overflow: hidden;
+  }
+
+  .tri {
+    position: absolute;
+    width: 0; height: 0;
+    opacity: 0.9;
+  }
+
+  .tri-1 {
+    border-left: 320px solid transparent;
+    border-top: 280px solid #1E3563;
+    right: 0; top: 0;
+  }
+
+  .tri-2 {
+    border-right: 260px solid transparent;
+    border-top: 400px solid #152650;
+    right: 0; top: 0;
+  }
+
+  .tri-3 {
+    border-left: 200px solid transparent;
+    border-top: 180px solid #2A4A80;
+    right: 60px; top: 120px;
+    opacity: 0.5;
+  }
+
+  .tri-4 {
+    border-right: 180px solid transparent;
+    border-top: 220px solid rgba(201,169,110,0.12);
+    right: 80px; top: 0;
+  }
+
+  .tri-5 {
+    border-left: 140px solid transparent;
+    border-top: 160px solid #8EB4D8;
+    right: 0; top: 140px;
+    opacity: 0.35;
+  }
+
+  /* Grid lines */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 140px 60px 80px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: rgba(201,169,110,0.12);
+    border: 1px solid rgba(201,169,110,0.3);
+    border-radius: 40px;
+    padding: 8px 20px;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-eyebrow-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-eyebrow span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 6vw, 88px);
+    font-weight: 700;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: var(--red);
+  }
+
+  .hero-headline .underline-gold {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-headline .underline-gold::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    margin-bottom: 52px;
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 80px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: none; cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: #c0112a;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(232,25,44,0.35);
+  }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: transparent;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.25s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .stat-item {
+    padding: 28px 36px;
+    display: flex; align-items: center; gap: 20px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--red); }
+
+  .stat-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .stat-divider {
+    width: 1px; height: 36px;
+    background: rgba(201,169,110,0.3);
+    display: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── TRUST STRIP ── */
+  .trust-strip {
+    background: var(--cream);
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .trust-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--grey);
+    white-space: nowrap;
+    min-width: fit-content;
+  }
+
+  .trust-logos {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    animation: scrollLeft 25s linear infinite;
+  }
+
+  .trust-logo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #8A92A3;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .trust-logo:hover { color: var(--navy); }
+
+  @keyframes scrollLeft {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION LAYOUT ── */
+  section { padding: 100px 60px; }
+  .container { max-width: 1400px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .section-tag-line {
+    width: 32px; height: 2px;
+    background: var(--red);
+  }
+
+  .section-tag span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  .section-title em {
+    font-style: normal;
+    color: var(--red);
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--grey);
+    line-height: 1.8;
+    max-width: 540px;
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--white); }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+    gap: 40px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--light-grey);
+    border: 1px solid var(--light-grey);
+  }
+
+  .service-card {
+    background: white;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-card:hover {
+    background: var(--navy);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px rgba(13,27,62,0.15);
+    z-index: 1;
+  }
+
+  .service-card:hover .service-num,
+  .service-card:hover .service-name,
+  .service-card:hover .service-desc { color: white; }
+
+  .service-card:hover .service-arrow { color: var(--gold); }
+
+  .service-card:hover .service-icon-wrap {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .service-icon-wrap {
+    width: 56px; height: 56px;
+    border: 1px solid var(--light-grey);
+    border-radius: 12px;
+    display: grid; place-items: center;
+    margin-bottom: 28px;
+    font-size: 24px;
+    transition: all 0.3s;
+    background: var(--cream);
+  }
+
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    line-height: 1.3;
+    transition: color 0.3s;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--grey);
+    line-height: 1.75;
+    margin-bottom: 32px;
+    transition: color 0.3s;
+  }
+
+  .service-arrow {
+    font-size: 20px;
+    color: var(--red);
+    transition: all 0.3s;
+  }
+
+  .service-card:hover .service-arrow {
+    transform: translateX(6px);
+  }
+
+  /* ── WHY ATLAS ── */
+  .why {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .why::before {
+    content: '';
+    position: absolute;
+    right: -200px; top: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,25,44,0.08) 0%, transparent 70%);
+  }
+
+  .why-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .why-left .section-title { color: white; }
+
+  .why-left .section-sub { color: rgba(255,255,255,0.55); }
+
+  .why-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .pillar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 32px 28px;
+    transition: all 0.3s;
+  }
+
+  .pillar:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(201,169,110,0.3);
+  }
+
+  .pillar-icon { font-size: 28px; margin-bottom: 16px; }
+
+  .pillar-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .pillar-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  .why-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .metric-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .metric-box:nth-child(1) { grid-column: span 2; background: var(--red); border-color: transparent; }
+
+  .metric-box:hover {
+    border-color: rgba(201,169,110,0.4);
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-3px);
+  }
+
+  .metric-box:nth-child(1):hover {
+    background: #c0112a;
+    border-color: transparent;
+  }
+
+  .metric-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .metric-box:nth-child(1) .metric-num { font-size: 64px; }
+
+  .metric-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 500;
+  }
+
+  .metric-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+  }
+
+  /* ── SECTORS ── */
+  .sectors { background: var(--cream); }
+
+  .sectors-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-top: 56px;
+  }
+
+  .sector-chip {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 24px 20px;
+    text-align: center;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+
+  .sector-chip:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(13,27,62,0.15);
+  }
+
+  .sector-chip:hover .sector-icon { filter: brightness(10); }
+  .sector-chip:hover .sector-name { color: white; }
+
+  .sector-icon { font-size: 28px; margin-bottom: 10px; display: block; }
+
+  .sector-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    transition: color 0.25s;
+  }
+
+  /* ── EMPANELMENTS ── */
+  .banks { background: white; }
+
+  .banks-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+
+  .banks-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--light-grey);
+    border: 1px solid var(--light-grey);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .bank-chip {
+    background: white;
+    padding: 20px 16px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .bank-chip:hover {
+    background: var(--navy);
+    z-index: 1;
+  }
+
+  .bank-name {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    transition: color 0.2s;
+    text-align: center;
+  }
+
+  .bank-chip:hover .bank-name { color: white; }
+
+  /* ── CLIENTS ── */
+  .clients { background: var(--light-grey); padding: 64px 60px; }
+
+  .clients-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .clients-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  .clients-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--grey);
+  }
+
+  .clients-scroll {
+    display: flex;
+    gap: 28px;
+    overflow: hidden;
+  }
+
+  .clients-track {
+    display: flex;
+    gap: 28px;
+    animation: scrollLeft 30s linear infinite;
+    min-width: max-content;
+  }
+
+  .client-pill {
+    background: white;
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 6px;
+    padding: 14px 28px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .client-pill:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  /* ── TEAM ── */
+  .team { background: white; }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--light-grey);
+    margin-top: 56px;
+  }
+
+  .team-card {
+    background: white;
+    padding: 36px 32px;
+    transition: all 0.3s;
+  }
+
+  .team-card:hover {
+    background: var(--navy);
+    transform: translateY(-4px);
+    z-index: 1;
+    box-shadow: 0 20px 50px rgba(13,27,62,0.15);
+  }
+
+  .team-card:hover .team-name,
+  .team-card:hover .team-title,
+  .team-card:hover .team-prev { color: rgba(255,255,255,0.9); }
+
+  .team-card:hover .team-role { color: var(--gold); }
+  .team-card:hover .team-exp { color: rgba(255,255,255,0.55); }
+
+  .team-initials {
+    width: 52px; height: 52px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+  }
+
+  .team-card:hover .team-initials {
+    background: var(--red);
+  }
+
+  .team-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+    transition: color 0.3s;
+  }
+
+  .team-role {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+    transition: color 0.3s;
+  }
+
+  .team-prev {
+    font-size: 12px;
+    color: var(--grey);
+    line-height: 1.6;
+    transition: color 0.3s;
+  }
+
+  .team-exp {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--grey);
+    margin-top: 16px;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+  }
+
+  .cta-left {
+    padding: 80px 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-left .section-title { color: white; font-size: 44px; }
+
+  .cta-left .section-sub { color: rgba(255,255,255,0.55); margin-bottom: 40px; }
+
+  .cta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .form-input, .form-select {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 14px 18px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-input::placeholder { color: rgba(255,255,255,0.25); }
+
+  .form-input:focus, .form-select:focus {
+    border-color: var(--gold);
+  }
+
+  .form-select option { background: var(--navy); }
+
+  .cta-right {
+    background: var(--red);
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-right::before {
+    content: 'ATLAS';
+    position: absolute;
+    bottom: -40px; right: -20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 160px;
+    font-weight: 900;
+    color: rgba(0,0,0,0.1);
+    letter-spacing: 8px;
+    pointer-events: none;
+  }
+
+  .cta-right-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 28px;
+  }
+
+  .cta-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .cta-contact-icon {
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .cta-contact-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+  }
+
+  .cta-contact-text strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 4px;
+  }
+
+  .presence-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .presence-chip {
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #06101F;
+    padding: 48px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-left {
+    display: flex; align-items: center; gap: 16px;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.5px;
+  }
+
+  .footer-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 36px; left: 60px;
+    display: flex; align-items: center; gap: 12px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.4s forwards;
+  }
+
+  .scroll-line {
+    width: 40px; height: 1px;
+    background: rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--gold);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  .scroll-text {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    .hero-content { padding: 120px 32px 60px; }
+    section { padding: 80px 32px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-layout { grid-template-columns: 1fr; gap: 48px; }
+    .sectors-grid { grid-template-columns: repeat(4, 1fr); }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .banks-grid { grid-template-columns: repeat(4, 1fr); }
+    .cta-inner { grid-template-columns: 1fr; }
+    .stats-bar { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 24px; text-align: center; }
+    .banks-intro { grid-template-columns: 1fr; }
+    .clients, .trust-strip { padding: 48px 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-globe">🌐</div>
+    <div class="logo-text"><span>ATLAS</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#sectors">Sectors</a></li>
+    <li><a href="#banks">Empanelments</a></li>
+    <li><a href="#team">Leadership</a></li>
+    <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-triangles">
+    <div class="tri tri-1"></div>
+    <div class="tri tri-2"></div>
+    <div class="tri tri-3"></div>
+    <div class="tri tri-4"></div>
+    <div class="tri tri-5"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <span>Established 2012 · Hyderabad, India</span>
+    </div>
+
+    <h1 class="hero-headline">
+      Where Capital<br>Meets <em>Conviction.</em>
+    </h1>
+
+    <p class="hero-sub">
+      India's most trusted financial research & consulting firm — empanelled with 24 banks, delivering 600+ projects across infrastructure, pharma, energy, and beyond.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">
+        Start a Conversation
+        <span>→</span>
+      </a>
+      <a href="#services" class="btn-secondary">
+        Explore Services
+        <span>↓</span>
+      </a>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div>
+          <div class="stat-num">13<span>+</span></div>
+          <div class="stat-label">Years of<br>Excellence</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-num">24</div>
+          <div class="stat-label">Bank<br>Empanelments</div>
+        </div>
+      </div>
+      <div class="stat-item">
+        <div>
+          <div class="stat-num">600<span>+</span></div>
+          <div class="stat-label">Projects<br>Delivered</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <span class="trust-label">Trusted By</span>
+  <div class="trust-logos">
+    <span class="trust-logo">SBI</span>
+    <span class="trust-logo">NaBFID</span>
+    <span class="trust-logo">GMR Group</span>
+    <span class="trust-logo">Bharat Biotech</span>
+    <span class="trust-logo">Bank of Baroda</span>
+    <span class="trust-logo">Hetero</span>
+    <span class="trust-logo">Hilton Hotels</span>
+    <span class="trust-logo">NABARD</span>
+    <span class="trust-logo">Union Bank</span>
+    <span class="trust-logo">NCC</span>
+    <span class="trust-logo">Canara Bank</span>
+    <span class="trust-logo">DSR Group</span>
+    <span class="trust-logo">PNB</span>
+    <span class="trust-logo">India Exim Bank</span>
+    <!-- duplicate for seamless loop -->
+    <span class="trust-logo">SBI</span>
+    <span class="trust-logo">NaBFID</span>
+    <span class="trust-logo">GMR Group</span>
+    <span class="trust-logo">Bharat Biotech</span>
+    <span class="trust-logo">Bank of Baroda</span>
+    <span class="trust-logo">Hetero</span>
+    <span class="trust-logo">Hilton Hotels</span>
+    <span class="trust-logo">NABARD</span>
+    <span class="trust-logo">Union Bank</span>
+    <span class="trust-logo">NCC</span>
+    <span class="trust-logo">Canara Bank</span>
+    <span class="trust-logo">DSR Group</span>
+    <span class="trust-logo">PNB</span>
+    <span class="trust-logo">India Exim Bank</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div>
+        <div class="section-tag">
+          <div class="section-tag-line"></div>
+          <span>What We Do</span>
+        </div>
+        <h2 class="section-title">Precision Services for<br><em>Complex Capital</em> Decisions</h2>
+      </div>
+      <p class="section-sub">From concept to closure — our advisory services are built on 13+ years of deep domain experience and bank-aligned rigor.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon-wrap">📊</div>
+        <div class="service-num">01 — TEV</div>
+        <div class="service-name">Techno Economic Viability Report</div>
+        <div class="service-desc">Comprehensive 360° project assessment covering technical soundness, financial metrics (DSCR, IRR, NPV), and regulatory compliance — the gold standard for lender evaluation.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">📋</div>
+        <div class="service-num">02 — DPR</div>
+        <div class="service-name">Detailed Project Report</div>
+        <div class="service-desc">Sector-specific project blueprints built with market analysis, technical specifications, financial models, and risk mitigation frameworks aligned to banking standards.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">🏗️</div>
+        <div class="service-num">03 — LIE</div>
+        <div class="service-name">Lender's Independent Engineer</div>
+        <div class="service-desc">Mandatory for bank disbursement — our chartered engineers validate physical progress against financial expenditure through structured site inspection and compliance reporting.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">💼</div>
+        <div class="service-num">04 — PFA</div>
+        <div class="service-name">Project Finance Advisory</div>
+        <div class="service-desc">End-to-end debt structuring, financial modeling, and lender liaison — from term sheet to financial closure, we navigate the capital stack with precision.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">📈</div>
+        <div class="service-num">05 — BIZ</div>
+        <div class="service-name">Business Consultancy</div>
+        <div class="service-desc">Strategic advisory for growth, M&A, valuations, and turnarounds — delivering structured, data-driven frameworks for complex business decisions.</div>
+        <div class="service-arrow">→</div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon-wrap">🌱</div>
+        <div class="service-num">06 — ESG</div>
+        <div class="service-name">ESG Reporting & Advisory</div>
+        <div class="service-desc">SEBI BRSR, GRI, and SASB-aligned ESG advisory — helping enterprises unlock green financing benefits and demonstrate compliance to institutional lenders.</div>
+        <div class="service-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ATLAS -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-layout">
+      <div class="why-left">
+        <div class="section-tag">
+          <div class="section-tag-line"></div>
+          <span>Why Atlas</span>
+        </div>
+        <h2 class="section-title">Built on Expertise.<br><em>Delivered</em> with Integrity.</h2>
+        <p class="section-sub">Our leadership team brings over 300+ combined years of experience from India's top public sector banks, IITs, and global enterprises.</p>
+
+        <div class="why-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🎯</div>
+            <div class="pillar-name">Deep Domain Expertise</div>
+            <div class="pillar-desc">Sector-specific knowledge across 15+ industries from pharma to infrastructure.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">📡</div>
+            <div class="pillar-name">Data Driven</div>
+            <div class="pillar-desc">Every recommendation backed by quantitative analysis and market intelligence.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">⚡</div>
+            <div class="pillar-name">Speed & Integrity</div>
+            <div class="pillar-desc">Time-bound deliverables without compromise on accuracy or quality.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🏦</div>
+            <div class="pillar-name">Bank-Aligned</div>
+            <div class="pillar-desc">Our methodology is calibrated to meet the scrutiny of India's top lending institutions.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-right">
+        <div class="metric-box">
+          <div class="metric-num">600+</div>
+          <div class="metric-label">Projects Successfully Delivered</div>
+          <div class="metric-sub">Across infrastructure, pharma, energy, real estate & more</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">13+</div>
+          <div class="metric-label">Years in Operation</div>
+          <div class="metric-sub">Since 2012</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">24</div>
+          <div class="metric-label">Bank Empanelments</div>
+          <div class="metric-sub">National & private banks</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">8</div>
+          <div class="metric-label">Cities Nationwide</div>
+          <div class="metric-sub">Pan-India presence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section class="sectors" id="sectors">
+  <div class="container">
+    <div class="section-tag">
+      <div class="section-tag-line"></div>
+      <span>Sectors</span>
+    </div>
+    <h2 class="section-title">Industries We <em>Specialize</em> In</h2>
+
+    <div class="sectors-grid">
+      <div class="sector-chip">
+        <span class="sector-icon">💊</span>
+        <div class="sector-name">Pharma</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🛣️</span>
+        <div class="sector-name">Roads & Highways</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">⚡</span>
+        <div class="sector-name">Energy & Renewables</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🏗️</span>
+        <div class="sector-name">Infra & Real Estate</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🏨</span>
+        <div class="sector-name">Hospitality</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🏥</span>
+        <div class="sector-name">Healthcare</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🌾</span>
+        <div class="sector-name">Agri & Food Processing</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">⚙️</span>
+        <div class="sector-name">Iron, Steel & Cement</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🚚</span>
+        <div class="sector-name">Logistics & Warehousing</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🚗</span>
+        <div class="sector-name">Electric Vehicles</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🧵</span>
+        <div class="sector-name">Textiles</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🚙</span>
+        <div class="sector-name">Automotive</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🧪</span>
+        <div class="sector-name">Fine Chemicals</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">📄</span>
+        <div class="sector-name">Paper</div>
+      </div>
+      <div class="sector-chip">
+        <span class="sector-icon">🌐</span>
+        <div class="sector-name">& More</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANK EMPANELMENTS -->
+<section class="banks" id="banks">
+  <div class="container">
+    <div class="banks-intro">
+      <div>
+        <div class="section-tag">
+          <div class="section-tag-line"></div>
+          <span>Empanelments</span>
+        </div>
+        <h2 class="section-title">Recognized by<br>India's Leading <em>Banks</em></h2>
+        <p class="section-sub">Our work speaks for itself — empanelled as a trusted financial advisory partner across 24 of India's largest public sector and private financial institutions.</p>
+      </div>
+      <div style="background: var(--cream); padding: 36px; border-radius: 8px; border-left: 3px solid var(--red);">
+        <div style="font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--navy); line-height: 1.7; margin-bottom: 16px;">"We've always believed in letting our work do the talking — and that's how we became a go-to partner for financial institutions across the board."</div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--grey);">Atlas Leadership</div>
+      </div>
+    </div>
+
+    <div class="banks-grid">
+      <div class="bank-chip"><div class="bank-name">NaBFID</div></div>
+      <div class="bank-chip"><div class="bank-name">SBI</div></div>
+      <div class="bank-chip"><div class="bank-name">Union Bank of India</div></div>
+      <div class="bank-chip"><div class="bank-name">India Exim Bank</div></div>
+      <div class="bank-chip"><div class="bank-name">Bank of Baroda</div></div>
+      <div class="bank-chip"><div class="bank-name">Central Bank of India</div></div>
+      <div class="bank-chip"><div class="bank-name">Canara Bank</div></div>
+      <div class="bank-chip"><div class="bank-name">UCO Bank</div></div>
+      <div class="bank-chip"><div class="bank-name">Bank of Maharashtra</div></div>
+      <div class="bank-chip"><div class="bank-name">NABARD</div></div>
+      <div class="bank-chip"><div class="bank-name">PNB</div></div>
+      <div class="bank-chip"><div class="bank-name">Bank of India</div></div>
+      <div class="bank-chip"><div class="bank-name">IIFL</div></div>
+      <div class="bank-chip"><div class="bank-name">Indian Bank</div></div>
+      <div class="bank-chip"><div class="bank-name">Indian Overseas Bank</div></div>
+      <div class="bank-chip"><div class="bank-name">+ 9 More</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS SCROLL -->
+<div class="clients">
+  <div class="clients-inner">
+    <div class="clients-header">
+      <div class="clients-title">Our Client Associations</div>
+    </div>
+    <div class="clients-scroll">
+      <div class="clients-track">
+        <div class="client-pill">Continental Coffee</div>
+        <div class="client-pill">Bharat Biotech</div>
+        <div class="client-pill">GMR Group</div>
+        <div class="client-pill">MEIL</div>
+        <div class="client-pill">Karkinos Healthcare</div>
+        <div class="client-pill">Hilton Hotels & Resorts</div>
+        <div class="client-pill">Hetero</div>
+        <div class="client-pill">SAS Infra</div>
+        <div class="client-pill">NCC</div>
+        <div class="client-pill">Vasavi Group</div>
+        <div class="client-pill">Rajapushpa Properties</div>
+        <div class="client-pill">DSR Group</div>
+        <div class="client-pill">Lee Pharma</div>
+        <div class="client-pill">Radha TMT</div>
+        <div class="client-pill">Devi Fisheries</div>
+        <div class="client-pill">Sentini Flo Pipes</div>
+        <div class="client-pill">Avada Energy</div>
+        <div class="client-pill">RackBank</div>
+        <div class="client-pill">AET</div>
+        <div class="client-pill">Epsilon Carbon</div>
+        <!-- duplicate -->
+        <div class="client-pill">Continental Coffee</div>
+        <div class="client-pill">Bharat Biotech</div>
+        <div class="client-pill">GMR Group</div>
+        <div class="client-pill">MEIL</div>
+        <div class="client-pill">Karkinos Healthcare</div>
+        <div class="client-pill">Hilton Hotels & Resorts</div>
+        <div class="client-pill">Hetero</div>
+        <div class="client-pill">SAS Infra</div>
+        <div class="client-pill">NCC</div>
+        <div class="client-pill">Vasavi Group</div>
+        <div class="client-pill">Rajapushpa Properties</div>
+        <div class="client-pill">DSR Group</div>
+        <div class="client-pill">Lee Pharma</div>
+        <div class="client-pill">Radha TMT</div>
+        <div class="client-pill">Devi Fisheries</div>
+        <div class="client-pill">Sentini Flo Pipes</div>
+        <div class="client-pill">Avada Energy</div>
+        <div class="client-pill">RackBank</div>
+        <div class="client-pill">AET</div>
+        <div class="client-pill">Epsilon Carbon</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="section-tag">
+      <div class="section-tag-line"></div>
+      <span>Leadership</span>
+    </div>
+    <h2 class="section-title">The Minds Behind <em>Atlas</em></h2>
+    <p class="section-sub" style="margin-bottom: 0;">Seasoned professionals from SBI, IDBI, HDFC, IIT, and global institutions — with a collective 300+ years of domain expertise.</p>
+
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-initials">GR</div>
+        <div class="team-name">G. Madhusudhan Rao</div>
+        <div class="team-role">Founder & Managing Director</div>
+        <div class="team-prev">Former senior leader at IDBI, HDFC, ING, and global MNCs. 30 years of financial services leadership.</div>
+        <div class="team-exp">30+ YRS EXPERIENCE</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-initials">JS</div>
+        <div class="team-name">J.S. Subba Rao</div>
+        <div class="team-role">Co-Founder & Chairman</div>
+        <div class="team-prev">Former GM, State Bank Group. SEBI Arbitration Panel Member. 40 years in credit analysis & treasury operations.</div>
+        <div class="team-exp">40+ YRS EXPERIENCE</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-initials">MM</div>
+        <div class="team-name">M.M. Panda</div>
+        <div class="team-role">Director</div>
+        <div class="team-prev">Former DGM, Central Bank of India. Expert in credit analysis and risk management.</div>
+        <div class="team-exp">30+ YRS EXPERIENCE</div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-initials">CR</div>
+        <div class="team-name">C.M. Ramesh</div>
+        <div class="team-role">Director</div>
+        <div class="team-prev">CISA & Chartered Accountant. Former Group CFO at Landmark Group (Middle East). 30+ years in finance.</div>
+        <div class="team-exp">30+ YRS EXPERIENCE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA + CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="section-tag">
+        <div class="section-tag-line"></div>
+        <span>Get In Touch</span>
+      </div>
+      <h2 class="section-title" style="color:white; font-size: 40px;">Let's Talk About<br><em style="color: var(--gold);">Your Project</em></h2>
+      <p class="section-sub" style="color: rgba(255,255,255,0.5); margin-bottom: 36px;">Share your requirements — our advisory team will get back within 24 hours.</p>
+
+      <div class="cta-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="Full name">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Company</label>
+            <input type="text" class="form-input" placeholder="Organisation">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-input" placeholder="+91 00000 00000">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="you@company.com">
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Service Required</label>
+          <select class="form-select">
+            <option value="">Select a service</option>
+            <option>Techno Economic Viability (TEV)</option>
+            <option>Detailed Project Report (DPR)</option>
+            <option>Lender's Independent Engineer (LIE)</option>
+            <option>Project Finance Advisory</option>
+            <option>Business Consultancy</option>
+            <option>ESG Reporting</option>
+          </select>
+        </div>
+        <button class="btn-primary" style="margin-top: 8px; justify-content: center;">
+          Submit Inquiry →
+        </button>
+      </div>
+    </div>
+
+    <div class="cta-right">
+      <div class="cta-right-title">Your Financial<br>Advisory Partner.</div>
+
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon">📞</div>
+        <div class="cta-contact-text">
+          <strong>Call Us</strong>
+          +91 40-46000440<br>+91 92465 35360
+        </div>
+      </div>
+
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon">✉️</div>
+        <div class="cta-contact-text">
+          <strong>Email</strong>
+          info@atlasfin.in
+        </div>
+      </div>
+
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon">🌐</div>
+        <div class="cta-contact-text">
+          <strong>Website</strong>
+          www.atlasfin.in
+        </div>
+      </div>
+
+      <div class="cta-contact-item">
+        <div class="cta-contact-icon">📍</div>
+        <div class="cta-contact-text">
+          <strong>Presence Across India</strong>
+          <div class="presence-chips">
+            <span class="presence-chip">Hyderabad</span>
+            <span class="presence-chip">Mumbai</span>
+            <span class="presence-chip">Pune</span>
+            <span class="presence-chip">Chennai</span>
+            <span class="presence-chip">Bengaluru</span>
+            <span class="presence-chip">Delhi</span>
+            <span class="presence-chip">Vijayawada</span>
+            <span class="presence-chip">Raipur</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <div style="width:32px; height:32px; background:var(--red); border-radius:50%; display:grid; place-items:center; font-size:14px;">🌐</div>
+      <span style="font-family:'DM Sans'; font-weight:700; font-size:16px; letter-spacing:3px; color:white;">ATLAS</span>
+    </div>
+    <span class="footer-copy">© 2025 Atlas Financial Research & Consulting. All rights reserved.</span>
+  </div>
+
+  <div class="footer-tagline">Delivering clarity in complex capital markets.</div>
+
+  <ul class="footer-links">
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Disclaimer</a></li>
+    <li><a href="#">Sitemap</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .team-card, .sector-chip, .metric-box, .pillar').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+
+  // Counter animation
+  function animateCounter(el, target, suffix) {
+    let start = 0;
+    const duration = 1500;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        el.textContent = target + suffix;
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(start) + suffix;
+      }
+    }, 16);
+  }
+
+  const counters = document.querySelectorAll('.stat-num, .metric-num');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.animated) {
+        entry.target.dataset.animated = true;
+        const text = entry.target.textContent;
+        const num = parseInt(text.replace(/[^0-9]/g, ''));
+        const suffix = text.includes('+') ? '+' : '';
+        if (num) animateCounter(entry.target.querySelector('span') || entry.target, num, suffix);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => counterObserver.observe(c));
+</script>
+</body>
+</html>
