@@ -102,7 +102,43 @@
 
   .nav-cta:hover { background: #c0112a !important; color: white !important; }
 
-  /* â”€â”€ HERO â”€â”€ */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 102;
+    position: relative;
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  nav.nav-menu-open .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  nav.nav-menu-open .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  nav.nav-menu-open .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* â"€â"€ HERO â"€â"€ */
   .hero {
     min-height: 100vh;
     background: var(--navy);
@@ -938,6 +974,7 @@
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s;
+    appearance: none;
     -webkit-appearance: none;
   }
 
@@ -1109,19 +1146,245 @@
     font-weight: 600;
   }
 
-  /* Responsive tweaks */
+  /* Responsive – tablet */
   @media (max-width: 1024px) {
-    nav { padding: 0 32px; }
+    nav { padding: 0 32px; height: 72px; flex-wrap: wrap; align-items: center; }
+    .nav-logo-img { height: 38px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(13, 27, 62, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 16px 32px 24px;
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease, visibility 0.3s;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+    nav.nav-menu-open .nav-links {
+      max-height: 380px;
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-links li { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links a { display: block; font-size: 13px; padding: 14px 0; width: 100%; }
+    .nav-links .nav-cta { margin-top: 8px; text-align: center; padding: 12px 20px; }
     .hero-content { padding: 90px 32px 60px; }
+    .hero-headline { font-size: clamp(40px, 5vw, 56px); }
+    .hero-sub { font-size: 16px; }
+    .hero-actions { flex-wrap: wrap; margin-bottom: 48px; }
+    .stat-item { padding: 20px 24px; }
+    .stat-num { font-size: 36px; }
     section { padding: 80px 32px; }
+    .services-header { flex-direction: column; align-items: flex-start; gap: 24px; margin-bottom: 48px; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .service-card { padding: 36px 28px; }
     .why-layout { grid-template-columns: 1fr; gap: 48px; }
-    .sectors-grid { grid-template-columns: repeat(4, 1fr); }
-    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-right { grid-template-columns: 1fr 1fr; }
+    .metric-box:nth-child(1) { grid-column: span 2; }
+    .sectors-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 40px; }
+    .sector-chip { padding: 18px 14px; }
+    .sector-icon { font-size: 24px; }
+    .sector-name { font-size: 11px; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); margin-top: 40px; }
+    .team-card { padding: 28px 24px; }
+    .banks-intro { grid-template-columns: 1fr; gap: 32px; margin-bottom: 48px; }
     .banks-grid { grid-template-columns: repeat(4, 1fr); }
-    .cta-inner { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; min-height: auto; }
+    .cta-left, .cta-right { padding: 60px 32px; }
+    .cta-left .section-title { font-size: 36px; }
+    .cta-right::before { font-size: 100px; }
+    .cta-right-title { font-size: 28px; }
     .stats-bar { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 24px; text-align: center; }
-    .banks-intro { grid-template-columns: 1fr; }
-    .clients, .trust-strip { padding: 48px 32px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 40px 32px; }
+    .footer-left { flex-direction: column; }
+    .clients, .trust-strip { padding: 32px 24px; }
+    .trust-label { padding-right: 24px; }
+    .scroll-indicator { left: 32px; bottom: 24px; }
+  }
+
+  /* Responsive – small tablet / large phone */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; height: 64px; flex-wrap: wrap; align-items: center; }
+    .nav-logo-img { height: 34px; }
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(13, 27, 62, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 16px 20px 24px;
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: max-height 0.35s ease, opacity 0.3s ease, visibility 0.3s;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+    nav.nav-menu-open .nav-links {
+      max-height: 360px;
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-links li {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links a {
+      display: block;
+      font-size: 14px;
+      padding: 14px 0;
+      width: 100%;
+    }
+    .nav-links .nav-cta {
+      margin-top: 8px;
+      text-align: center;
+      padding: 14px 20px;
+    }
+    .hero-content { padding: 80px 20px 48px; }
+    .hero-headline { font-size: clamp(32px, 8vw, 44px); margin-bottom: 20px; }
+    .hero-sub { font-size: 15px; margin-bottom: 32px; }
+    .hero-actions { flex-direction: column; align-items: flex-start; margin-bottom: 40px; gap: 12px; }
+    .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 14px 24px; }
+    .stat-item { padding: 16px 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .stat-num { font-size: 32px; }
+    .stat-label { font-size: 11px; }
+    section { padding: 60px 20px; }
+    .section-title { font-size: clamp(26px, 5vw, 36px); margin-bottom: 16px; }
+    .section-sub { font-size: 15px; }
+    .services-header { margin-bottom: 36px; }
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .service-card { padding: 32px 24px; }
+    .service-icon-wrap { width: 48px; height: 48px; font-size: 20px; margin-bottom: 20px; }
+    .service-name { font-size: 18px; }
+    .service-desc { font-size: 13px; margin-bottom: 24px; }
+    .why-layout { gap: 36px; }
+    .why-pillars { grid-template-columns: 1fr; margin-top: 32px; gap: 2px; }
+    .pillar { padding: 24px 20px; }
+    .why-right { grid-template-columns: 1fr; }
+    .metric-box:nth-child(1) { grid-column: span 1; }
+    .metric-num { font-size: 44px; }
+    .metric-box:nth-child(1) .metric-num { font-size: 52px; }
+    .sectors-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 32px; }
+    .sector-chip { padding: 16px 12px; }
+    .sector-icon { font-size: 22px; margin-bottom: 8px; }
+    .sector-name { font-size: 10px; }
+    .banks-intro { margin-bottom: 36px; }
+    .banks-grid { grid-template-columns: repeat(3, 1fr); }
+    .bank-chip { padding: 16px 12px; }
+    .bank-name { font-size: 10px; }
+    .team-grid { grid-template-columns: 1fr; margin-top: 32px; }
+    .team-card { padding: 24px 20px; }
+    .cta-left, .cta-right { padding: 48px 20px; }
+    .cta-left .section-title { font-size: 28px; }
+    .cta-right::before { font-size: 72px; letter-spacing: 4px; }
+    .cta-right-title { font-size: 24px; margin-bottom: 20px; }
+    .form-row { grid-template-columns: 1fr; }
+    .cta-contact-item { margin-bottom: 20px; }
+    .cta-contact-icon { width: 36px; height: 36px; font-size: 14px; }
+    .presence-chips { margin-top: 24px; gap: 6px; }
+    .presence-chip { font-size: 11px; padding: 5px 12px; }
+    .clients { padding: 28px 20px; }
+    .clients-title { font-size: 11px; }
+    .clients-scroll { gap: 16px; }
+    .client-pill { padding: 12px 20px; font-size: 12px; }
+    .trust-strip { padding: 20px 16px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .trust-label { padding-right: 0; padding-bottom: 8px; }
+    .scroll-indicator { left: 20px; bottom: 20px; }
+    .scroll-text { font-size: 9px; letter-spacing: 2px; }
+    footer { padding: 32px 20px; gap: 20px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  }
+
+  /* Responsive – mobile */
+  @media (max-width: 480px) {
+    nav { padding: 0 16px; height: 56px; }
+    .nav-logo-img { height: 28px; }
+    .nav-toggle { width: 40px; height: 40px; }
+    .nav-toggle-bar { width: 20px; }
+    nav.nav-menu-open .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    nav.nav-menu-open .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-links { top: 56px; padding: 12px 16px 20px; }
+    nav.nav-menu-open .nav-links { max-height: 340px; }
+    .nav-links a { font-size: 13px; padding: 12px 0; }
+    .nav-links .nav-cta { padding: 12px 16px; font-size: 12px; }
+    .hero-content { padding: 72px 16px 40px; }
+    .hero-eyebrow { padding: 6px 14px; margin-bottom: 24px; }
+    .hero-eyebrow span { font-size: 10px; }
+    .hero-headline { font-size: clamp(28px, 10vw, 36px); line-height: 1.1; margin-bottom: 16px; }
+    .hero-sub { font-size: 14px; margin-bottom: 28px; max-width: 100%; }
+    .hero-actions { margin-bottom: 32px; }
+    .btn-primary, .btn-secondary { padding: 12px 20px; font-size: 13px; }
+    .stats-bar { margin-bottom: 0; }
+    .stat-item { padding: 14px 16px; }
+    .stat-num { font-size: 28px; }
+    .stat-label { font-size: 10px; line-height: 1.4; }
+    section { padding: 48px 16px; }
+    .section-tag { margin-bottom: 12px; }
+    .section-tag-line { width: 24px; }
+    .section-tag span { font-size: 10px; letter-spacing: 2px; }
+    .section-title { font-size: clamp(22px, 6vw, 28px); margin-bottom: 12px; }
+    .section-sub { font-size: 14px; }
+    .services-header { margin-bottom: 28px; }
+    .service-card { padding: 28px 20px; }
+    .service-num { font-size: 10px; }
+    .service-name { font-size: 16px; margin-bottom: 12px; }
+    .service-desc { font-size: 12px; margin-bottom: 20px; }
+    .why-pillars { margin-top: 24px; }
+    .pillar { padding: 20px 16px; }
+    .pillar-icon { font-size: 24px; margin-bottom: 12px; }
+    .pillar-name { font-size: 13px; }
+    .pillar-desc { font-size: 12px; }
+    .metric-box { padding: 28px 20px; }
+    .metric-num { font-size: 38px; }
+    .metric-box:nth-child(1) .metric-num { font-size: 44px; }
+    .metric-label { font-size: 11px; }
+    .metric-sub { font-size: 12px; }
+    .sectors-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 24px; }
+    .sector-chip { padding: 14px 10px; }
+    .sector-icon { font-size: 20px; }
+    .sector-name { font-size: 10px; }
+    .banks-intro { gap: 24px; margin-bottom: 28px; }
+    .banks-grid { grid-template-columns: repeat(2, 1fr); }
+    .bank-chip { padding: 14px 10px; }
+    .bank-name { font-size: 9px; }
+    .team-grid { margin-top: 24px; }
+    .team-card { padding: 20px 16px; }
+    .team-initials { width: 44px; height: 44px; font-size: 16px; margin-bottom: 16px; }
+    .team-name { font-size: 16px; }
+    .team-role { font-size: 10px; margin-bottom: 8px; }
+    .team-prev { font-size: 11px; }
+    .team-exp { font-size: 10px; margin-top: 12px; }
+    .cta-left, .cta-right { padding: 40px 16px; }
+    .cta-left .section-title { font-size: 24px; }
+    .cta-right::before { font-size: 56px; }
+    .cta-right-title { font-size: 20px; margin-bottom: 16px; }
+    .cta-contact-item { margin-bottom: 16px; }
+    .cta-contact-text { font-size: 13px; }
+    .cta-contact-text strong { font-size: 10px; }
+    .presence-chips { margin-top: 20px; gap: 6px; }
+    .presence-chip { font-size: 10px; padding: 4px 10px; }
+    .clients { padding: 24px 16px; }
+    .client-pill { padding: 10px 16px; font-size: 11px; }
+    .trust-strip { padding: 16px; }
+    .scroll-indicator { left: 16px; bottom: 16px; }
+    .scroll-line { width: 32px; }
+    footer { padding: 24px 16px; gap: 16px; }
+    .footer-copy { font-size: 11px; }
+    .footer-links a { font-size: 11px; }
+    .footer-tagline { font-size: 12px; }
   }

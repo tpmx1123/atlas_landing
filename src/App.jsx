@@ -1,7 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function App() {
   const animatedRef = useRef(new Set())
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = () => setMenuOpen(false)
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -124,11 +136,21 @@ function App() {
 
   return (
     <>
-      <nav>
-        <a href="#" className="nav-logo">
+      <nav className={menuOpen ? 'nav-menu-open' : ''}>
+        <a href="#" className="nav-logo" onClick={closeMenu}>
           <img src="/logo.png" alt="Atlas Financial Research & Consulting" className="nav-logo-img" />
         </a>
-        <ul className="nav-links">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span className="nav-toggle-bar" />
+          <span className="nav-toggle-bar" />
+          <span className="nav-toggle-bar" />
+        </button>
+        <ul className="nav-links" onClick={closeMenu}>
           <li><a href="#services">Services</a></li>
           <li><a href="#why">Why Us</a></li>
           <li><a href="#sectors">Sectors</a></li>
